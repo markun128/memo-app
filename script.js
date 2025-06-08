@@ -6,6 +6,7 @@ class MemoApp {
         this.clearAllBtn = document.getElementById('clearAll');
         this.searchInput = document.getElementById('searchInput');
         this.clearSearchBtn = document.getElementById('clearSearch');
+        this.digitalClock = document.getElementById('digitalClock');
         this.searchQuery = '';
         
         this.init();
@@ -17,6 +18,7 @@ class MemoApp {
         this.searchInput.addEventListener('input', (e) => this.searchMemos(e.target.value));
         this.clearSearchBtn.addEventListener('click', () => this.clearSearch());
         this.renderMemos();
+        this.startClock();
     }
     
     generateId() {
@@ -94,6 +96,26 @@ class MemoApp {
         } else {
             return date.toLocaleDateString('ja-JP');
         }
+    }
+    
+    startClock() {
+        this.updateClock();
+        setInterval(() => this.updateClock(), 1000);
+    }
+    
+    updateClock() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        const dateStr = now.toLocaleDateString('ja-JP', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            weekday: 'short'
+        });
+        
+        this.digitalClock.innerHTML = `${dateStr} ${hours}:${minutes}:${seconds}`;
     }
     
     renderMemos() {

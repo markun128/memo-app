@@ -28,6 +28,15 @@ header h1 {
     font-weight: 300;
 }
 
+.digital-clock {
+    font-size: 2rem;
+    font-weight: 200;
+    color: #3498db;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+}
+
 .search-container {
     display: flex;
     gap: 10px;
@@ -165,6 +174,10 @@ header h1 {
     
     header h1 {
         font-size: 2rem;
+    }
+    
+    .digital-clock {
+        font-size: 1.5rem;
     }
     
     .search-container {

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,36 +7,94 @@
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: 'Kosugi Maru', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #ffeef8 0%, #e6f3ff 50%, #fff0f5 100%);
+    min-height: 100vh;
+    color: #5a5a5a;
     line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '✨';
+    position: fixed;
+    top: 20%;
+    left: 10%;
+    font-size: 30px;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.3;
+}
+
+body::after {
+    content: '🌸';
+    position: fixed;
+    bottom: 20%;
+    right: 10%;
+    font-size: 30px;
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 2s;
+    opacity: 0.3;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 header {
     text-align: center;
     margin-bottom: 30px;
+    position: relative;
 }
 
 header h1 {
-    color: #2c3e50;
+    color: #ff6b9d;
     font-size: 2.5rem;
-    font-weight: 300;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.2);
+    position: relative;
+    display: inline-block;
+}
+
+header h1::before {
+    content: '💝';
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+}
+
+header h1::after {
+    content: '💝';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
 }
 
 .digital-clock {
-    font-size: 2rem;
-    font-weight: 200;
-    color: #3498db;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #a8d8ea;
     margin-bottom: 10px;
-    font-family: 'Courier New', monospace;
-    letter-spacing: 2px;
+    font-family: 'Kosugi Maru', monospace;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: inline-block;
+    box-shadow: 0 2px 10px rgba(168, 216, 234, 0.3);
 }
 
 .search-container {
@@ -42,83 +102,146 @@ header h1 {
     gap: 10px;
     margin-bottom: 20px;
     justify-content: center;
+    position: relative;
 }
 
 .search-input {
     flex: 1;
     max-width: 400px;
-    padding: 12px 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 12px 20px 12px 40px;
+    border: 2px solid #ffc7e3;
+    border-radius: 25px;
     font-size: 14px;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    position: relative;
+}
+
+.search-input::placeholder {
+    color: #ffb3d9;
+}
+
+.search-container::before {
+    content: '🔍';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-180px);
+    margin-top: 12px;
+    font-size: 16px;
+    pointer-events: none;
+    z-index: 2;
 }
 
 .search-input:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: #ff6b9d;
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.2);
+    transform: scale(1.02);
 }
 
 .memo-controls {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     margin-bottom: 30px;
     justify-content: center;
 }
 
 .btn {
-    padding: 12px 24px;
+    padding: 12px 28px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .btn-primary {
-    background-color: #3498db;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
 
+.btn-primary::after {
+    content: '✨';
+    margin-left: 5px;
+}
+
 .btn-primary:hover {
-    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 .btn-danger {
-    background-color: #e74c3c;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     color: white;
 }
 
 .btn-danger:hover {
-    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
 }
 
 .btn-secondary {
-    background-color: #95a5a6;
-    color: white;
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    color: #5a5a5a;
 }
 
 .btn-secondary:hover {
-    background-color: #7f8c8d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(168, 237, 234, 0.4);
 }
 
 .memo-list {
     display: grid;
-    gap: 20px;
+    gap: 25px;
 }
 
 .memo-item {
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 245, 0.95) 100%);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.memo-item::before {
+    content: '🌟';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 40px;
+    opacity: 0.1;
+    transform: rotate(15deg);
 }
 
 .memo-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.2);
+    border-color: #ffc7e3;
 }
 
 .memo-header {
@@ -129,8 +252,19 @@ header h1 {
 }
 
 .memo-date {
-    color: #7f8c8d;
+    color: #ff9fc7;
     font-size: 12px;
+    background: rgba(255, 199, 227, 0.2);
+    padding: 4px 12px;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.memo-date::before {
+    content: '📅';
+    margin-right: 5px;
+    font-size: 14px;
 }
 
 .memo-actions {
@@ -139,9 +273,17 @@ header h1 {
 }
 
 .btn-small {
-    padding: 5px 10px;
+    padding: 6px 16px;
     font-size: 12px;
-    border-radius: 3px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #ffc7e3 0%, #ffb3d9 100%);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-small:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 10px rgba(255, 199, 227, 0.5);
 }
 
 .memo-content {
@@ -151,20 +293,48 @@ header h1 {
     resize: vertical;
     font-family: inherit;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.8;
     background: transparent;
+    color: #5a5a5a;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.memo-content::placeholder {
+    color: #ffb3d9;
+    font-style: italic;
 }
 
 .memo-content:focus {
     outline: none;
-    background-color: #f8f9fa;
+    background-color: rgba(255, 240, 245, 0.5);
+    box-shadow: inset 0 2px 8px rgba(255, 199, 227, 0.2);
 }
 
 .empty-state {
     text-align: center;
-    color: #7f8c8d;
-    font-style: italic;
+    color: #ff9fc7;
+    font-style: normal;
     margin-top: 50px;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.empty-state::before {
+    content: '💕';
+    display: block;
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
 }
 
 @media (max-width: 600px) {

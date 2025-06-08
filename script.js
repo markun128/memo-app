@@ -39,7 +39,7 @@ class MemoApp {
     }
     
     deleteMemo(id) {
-        if (confirm('このメモを削除しますか？')) {
+        if (confirm('本当に削除しちゃう？😢')) {
             this.memos = this.memos.filter(memo => memo.id !== id);
             this.saveMemos();
             this.renderMemos();
@@ -56,7 +56,7 @@ class MemoApp {
     }
     
     clearAllMemos() {
-        if (confirm('全てのメモを削除しますか？この操作は取り消せません。')) {
+        if (confirm('全部消えちゃうけど、本当にいいの？💔')) {
             this.memos = [];
             this.saveMemos();
             this.renderMemos();
@@ -129,8 +129,8 @@ class MemoApp {
         
         if (filteredMemos.length === 0) {
             let message = this.memos.length === 0 
-                ? 'メモがありません。「新しいメモ」ボタンを押して始めましょう。'
-                : '検索結果が見つかりませんでした。';
+                ? 'まだメモがないよ〜「新しいメモ」を押してね！'
+                : '見つからなかったよ...別の言葉で試してみて！';
             this.memoList.innerHTML = `
                 <div class="empty-state">
                     <p>${message}</p>
@@ -145,13 +145,13 @@ class MemoApp {
                     <span class="memo-date">${this.formatDate(memo.updatedAt)}</span>
                     <div class="memo-actions">
                         <button class="btn btn-danger btn-small" onclick="app.deleteMemo('${memo.id}')">
-                            削除
+                            削除 💔
                         </button>
                     </div>
                 </div>
                 <textarea 
                     class="memo-content" 
-                    placeholder="ここにメモを入力してください..."
+                    placeholder="メモを書いてね...💭"
                     onblur="app.updateMemo('${memo.id}', this.value)"
                     oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px'"
                 >${memo.content}</textarea>

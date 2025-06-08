@@ -4,6 +4,9 @@ class MemoApp {
         this.memoList = document.getElementById('memoList');
         this.addMemoBtn = document.getElementById('addMemo');
         this.clearAllBtn = document.getElementById('clearAll');
+        this.searchInput = document.getElementById('searchInput');
+        this.clearSearchBtn = document.getElementById('clearSearch');
+        this.searchQuery = '';
         
         this.init();
     }
@@ -11,6 +14,8 @@ class MemoApp {
     init() {
         this.addMemoBtn.addEventListener('click', () => this.addMemo());
         this.clearAllBtn.addEventListener('click', () => this.clearAllMemos());
+        this.searchInput.addEventListener('input', (e) => this.searchMemos(e.target.value));
+        this.clearSearchBtn.addEventListener('click', () => this.clearSearch());
         this.renderMemos();
     }
     
@@ -60,6 +65,17 @@ class MemoApp {
         localStorage.setItem('memos', JSON.stringify(this.memos));
     }
     
+    searchMemos(query) {
+        this.searchQuery = query.toLowerCase().trim();
+        this.renderMemos();
+    }
+    
+    clearSearch() {
+        this.searchQuery = '';
+        this.searchInput.value = '';
+        this.renderMemos();
+    }
+    
     formatDate(dateString) {
         const date = new Date(dateString);
         const now = new Date();
@@ -81,16 +97,27 @@ class MemoApp {
     }
     
     renderMemos() {
-        if (this.memos.length === 0) {
+        let filteredMemos = this.memos;
+        
+        if (this.searchQuery) {
+            filteredMemos = this.memos.filter(memo => 
+                memo.content.toLowerCase().includes(this.searchQuery)
+            );
+        }
+        
+        if (filteredMemos.length === 0) {
+            let message = this.memos.length === 0 
+                ? 'メモがありません。「新しいメモ」ボタンを押して始めましょう。'
+                : '検索結果が見つかりませんでした。';
             this.memoList.innerHTML = `
                 <div class="empty-state">
-                    <p>メモがありません。「新しいメモ」ボタンを押して始めましょう。</p>
+                    <p>${message}</p>
                 </div>
             `;
             return;
         }
         
-        this.memoList.innerHTML = this.memos.map(memo => `
+        this.memoList.innerHTML = filteredMemos.map(memo => `
             <div class="memo-item">
                 <div class="memo-header">
                     <span class="memo-date">${this.formatDate(memo.updatedAt)}</span>

@@ -28,6 +28,28 @@ header h1 {
     font-weight: 300;
 }
 
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.search-input {
+    flex: 1;
+    max-width: 400px;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
 .memo-controls {
     display: flex;
     gap: 10px;
@@ -61,6 +83,15 @@ header h1 {
 
 .btn-danger:hover {
     background-color: #c0392b;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
 }
 
 .memo-list {
@@ -134,6 +165,14 @@ header h1 {
     
     header h1 {
         font-size: 2rem;
+    }
+    
+    .search-container {
+        flex-direction: column;
+    }
+    
+    .search-input {
+        max-width: 100%;
     }
     
     .memo-controls {

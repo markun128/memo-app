@@ -63,13 +63,151 @@ header h1 {
     text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.2);
     position: relative;
     display: inline-block;
-    margin-top: 15px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #ff9fc7;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffeef8 0%, #e6f3ff 50%, #fff0f5 100%);
+}
+
+.loading {
+    font-size: 1.5rem;
+    color: #ff6b9d;
+    font-family: 'Kosugi Maru', sans-serif;
+}
+
+/* ログインフォームのスタイル */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffeef8 0%, #e6f3ff 50%, #fff0f5 100%);
+    padding: 20px;
+}
+
+.login-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid rgba(255, 199, 227, 0.3);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h1 {
+    color: #ff6b9d;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.login-header p {
+    color: #ff9fc7;
+    font-size: 1.1rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #5a5a5a;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #ffc7e3;
+    border-radius: 15px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ff6b9d;
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.2);
+}
+
+.form-group input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.error-message {
+    background: #ffe6e6;
+    color: #d63384;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+    text-align: center;
+}
+
+.login-toggle {
+    text-align: center;
+    color: #7d7d7d;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #ff6b9d;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: inherit;
+    padding: 0;
+    margin-left: 5px;
+}
+
+.toggle-btn:hover {
+    color: #ff9fc7;
+}
+
+.toggle-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 header h1::before {
     content: '💝';
     position: absolute;
-    left: -45px;
+    left: -40px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.5rem;
@@ -78,7 +216,7 @@ header h1::before {
 header h1::after {
     content: '💝';
     position: absolute;
-    right: -45px;
+    right: -40px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.5rem;
@@ -88,17 +226,14 @@ header h1::after {
     font-size: 1.8rem;
     font-weight: 400;
     color: #a8d8ea;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-family: 'Kosugi Maru', monospace;
     letter-spacing: 1px;
     background: rgba(255, 255, 255, 0.8);
     padding: 10px 20px;
     border-radius: 25px;
-    display: block;
+    display: inline-block;
     box-shadow: 0 2px 10px rgba(168, 216, 234, 0.3);
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .smart-controls {
@@ -184,9 +319,9 @@ header h1::after {
 .search-container::before {
     content: '🔍';
     position: absolute;
-    left: calc(50% - 200px + 15px);
-    top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-180px);
+    margin-top: 12px;
     font-size: 16px;
     pointer-events: none;
     z-index: 2;
@@ -459,34 +594,13 @@ header h1::after {
         font-size: 2rem;
     }
     
-    header h1::before,
-    header h1::after {
-        display: none;
-    }
-    
-    .digital-clock {
-        font-size: 1.5rem;
-        padding: 8px 16px;
-    }
-    
-    .search-container {
-        flex-direction: column;
-    }
-    
-    .search-container::before {
-        display: none;
-    }
-    
-    .search-input {
-        max-width: 100%;
-        padding-left: 20px;
-    }
-    
     .memo-controls {
         flex-direction: column;
+        gap: 10px;
     }
     
-    .btn {
-        width: 100%;
+    .filter-container {
+        flex-direction: column;
+        gap: 10px;
     }
 }

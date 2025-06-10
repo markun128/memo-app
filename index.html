@@ -20,11 +20,11 @@
 
         const categories = [
           { value: '', label: 'すべてのカテゴリ' },
-          { value: '仕事', label: '📋 仕事' },
-          { value: 'プライベート', label: '🏠 プライベート' },
-          { value: 'アイデア', label: '💡 アイデア' },
-          { value: '買い物', label: '🛒 買い物' },
-          { value: 'その他', label: '📝 その他' }
+          { value: '仕事', label: '仕事' },
+          { value: 'プライベート', label: 'プライベート' },
+          { value: 'アイデア', label: 'アイデア' },
+          { value: '買い物', label: '買い物' },
+          { value: 'その他', label: 'その他' }
         ];
 
         const sortOptions = [
@@ -117,11 +117,11 @@
                   onChange: handleCategoryChange,
                   key: 'category'
                 }, [
-                  React.createElement('option', { value: '仕事', key: 'work' }, '📋 仕事'),
-                  React.createElement('option', { value: 'プライベート', key: 'private' }, '🏠 プライベート'),
-                  React.createElement('option', { value: 'アイデア', key: 'idea' }, '💡 アイデア'),
-                  React.createElement('option', { value: '買い物', key: 'shopping' }, '🛒 買い物'),
-                  React.createElement('option', { value: 'その他', key: 'other' }, '📝 その他')
+                  React.createElement('option', { value: '仕事', key: 'work' }, '仕事'),
+                  React.createElement('option', { value: 'プライベート', key: 'private' }, 'プライベート'),
+                  React.createElement('option', { value: 'アイデア', key: 'idea' }, 'アイデア'),
+                  React.createElement('option', { value: '買い物', key: 'shopping' }, '買い物'),
+                  React.createElement('option', { value: 'その他', key: 'other' }, 'その他')
                 ])
               ]),
               React.createElement('div', { className: 'memo-actions', key: 'actions' }, [
@@ -129,12 +129,12 @@
                   className: `btn btn-favorite btn-small ${memo.isFavorite ? 'active' : ''}`,
                   onClick: () => onToggleFavorite(memo.id),
                   key: 'favorite'
-                }, memo.isFavorite ? '⭐' : '☆'),
+                }, memo.isFavorite ? '★' : '☆'),
                 React.createElement('button', {
                   className: 'btn btn-danger btn-small',
                   onClick: () => onDelete(memo.id),
                   key: 'delete'
-                }, '削除 💔')
+                }, '削除')
               ])
             ]),
             memo.tags.length > 0 && React.createElement('div', { className: 'memo-tags', key: 'tags' },
@@ -142,7 +142,7 @@
             ),
             React.createElement('textarea', {
               className: 'memo-content',
-              placeholder: 'メモを書いてね...💭 (#タグ で分類できます)',
+              placeholder: 'メモを入力... (#タグ で分類できます)',
               value: memo.content,
               onChange: handleContentChange,
               onInput: handleTextareaResize,
@@ -256,7 +256,7 @@
 
           // メモを削除
           const deleteMemo = (id) => {
-            if (confirm('本当に削除しちゃう？😢')) {
+            if (confirm('本当に削除しますか？')) {
               const updatedMemos = memos.filter(memo => memo.id !== id);
               setMemos(updatedMemos);
               saveMemos(updatedMemos);
@@ -265,7 +265,7 @@
 
           // 全メモを削除
           const clearAllMemos = () => {
-            if (confirm('全部消えちゃうけど、本当にいいの？💔')) {
+            if (confirm('全てのメモを削除しますか？')) {
               setMemos([]);
               saveMemos([]);
             }
@@ -348,11 +348,11 @@
 
           const getEmptyMessage = () => {
             if (memos.length === 0) {
-              return 'まだメモがないよ〜「新しいメモ」を押してね！';
+              return 'メモがありません。「新しいメモ」ボタンで作成してください。';
             } else if (showFavoritesOnly) {
-              return 'お気に入りのメモがないよ...⭐をタップしてお気に入り登録してね！';
+              return 'お気に入りのメモがありません。★ボタンでお気に入りに登録してください。';
             } else {
-              return '見つからなかったよ...別の言葉で試してみて！';
+              return '検索結果がありません。別のキーワードで試してください。';
             }
           };
 
@@ -402,7 +402,7 @@
                   className: `btn btn-filter ${showFavoritesOnly ? 'active' : ''}`,
                   onClick: toggleFavoritesOnly,
                   key: 'favorites'
-                }, '⭐ お気に入りのみ')
+                }, '★ お気に入りのみ')
               ])
             ]),
             
@@ -416,7 +416,7 @@
                 className: 'btn btn-info',
                 onClick: exportMemos,
                 key: 'export'
-              }, '📤 エクスポート'),
+              }, 'エクスポート'),
               React.createElement('button', {
                 className: 'btn btn-danger',
                 onClick: clearAllMemos,

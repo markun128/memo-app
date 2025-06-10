@@ -116,6 +116,57 @@ class ApiService {
     return this.request('/export');
   }
 
+  async vectorSearch(query, limit = 10) {
+    return this.request('/search/vector', {
+      method: 'POST',
+      body: JSON.stringify({ query, limit }),
+    });
+  }
+
+  async reindexMemos() {
+    return this.request('/search/reindex', {
+      method: 'POST',
+    });
+  }
+
+  async previewAutoTags(content) {
+    return this.request('/auto-tag/preview', {
+      method: 'POST',
+      body: JSON.stringify({ content }),
+    });
+  }
+
+  // Todo関連のAPI
+  async getTodos() {
+    return this.request('/todos');
+  }
+
+  async createTodo(todo) {
+    return this.request('/todos', {
+      method: 'POST',
+      body: JSON.stringify(todo),
+    });
+  }
+
+  async updateTodo(id, todo) {
+    return this.request(`/todos/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(todo),
+    });
+  }
+
+  async deleteTodo(id) {
+    return this.request(`/todos/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
+  async deleteAllTodos() {
+    return this.request('/todos', {
+      method: 'DELETE',
+    });
+  }
+
   async healthCheck() {
     return this.request('/health');
   }
